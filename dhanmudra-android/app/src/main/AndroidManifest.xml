@@ -5,8 +5,8 @@
     <application
         android:allowBackup="false"
         android:usesCleartextTraffic="false"
-        android:icon="@drawable/app_icon"
-        android:roundIcon="@drawable/app_icon"
+        android:icon="@drawable/app_icon_exact"
+        android:roundIcon="@drawable/app_icon_exact"
         android:label="Dhan Mudra"
         android:theme="@style/AppTheme">
         <activity
