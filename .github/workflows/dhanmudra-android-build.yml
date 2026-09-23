@@ -26,7 +26,6 @@ jobs:
       - name: Install Android SDK 36
         shell: bash
         run: |
-          echo "ANDROID_HOME=$ANDROID_HOME"
           SDKMANAGER="$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager"
           if [ ! -x "$SDKMANAGER" ]; then
             SDKMANAGER="$(command -v sdkmanager)"
@@ -52,15 +51,19 @@ jobs:
           if [ "$STATUS" -eq 0 ]; then
             cp dhanmudra-android/app/build/outputs/apk/release/*.apk release-output/ || true
             cp dhanmudra-android/app/build/outputs/bundle/release/*.aab release-output/ || true
+            mkdir -p release-output/tools/lib
+            cp "$ANDROID_HOME/build-tools/35.0.0/apksigner" release-output/tools/apksigner
+            cp "$ANDROID_HOME/build-tools/35.0.0/lib/apksigner.jar" release-output/tools/lib/apksigner.jar
+            cp "$ANDROID_HOME/build-tools/35.0.0/zipalign" release-output/tools/zipalign
           fi
           exit "$STATUS"
 
-      - name: Upload build outputs and log
+      - name: Upload build outputs and signing tools
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: DhanMudra-Build
-          path: release-output/*
+          path: release-output/**
           if-no-files-found: error
           retention-days: 7
 
