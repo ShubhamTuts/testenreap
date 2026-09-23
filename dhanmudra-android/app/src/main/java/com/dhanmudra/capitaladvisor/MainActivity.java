@@ -53,7 +53,7 @@ public class MainActivity extends Activity {
                 ViewGroup.LayoutParams.MATCH_PARENT));
 
         splashView = new ImageView(this);
-        splashView.setImageResource(R.drawable.splash);
+        splashView.setImageResource(R.drawable.splash_exact);
         splashView.setScaleType(ImageView.ScaleType.CENTER_CROP);
         splashView.setBackgroundColor(Color.rgb(4, 29, 88));
         root.addView(splashView, new FrameLayout.LayoutParams(
